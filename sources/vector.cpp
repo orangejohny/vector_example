@@ -82,16 +82,14 @@ void vector_t::push_back(int value)
 		size_++;
 		if (size_ > capacity_){
 			capacity_ *= 2;
-			int * elements = new int [size_];
+			int * elements = new int [capacity_];
 			for (std::size_t i = 0; i < size_ - 1; i++){
 				elements[i] = elements_[i];
 			}
 			elements[size_-1] = value;
 			delete[] elements_;
 			int * elements_ = new int [capacity_];
-			for (std::size_t i = 0; i < size_; i++){
-				elements_[i] = elements[i];
-			}
+			elements_ = elements;
 		}else elements_[size_-1] = value;
 	}
 }
@@ -107,16 +105,13 @@ void vector_t::pop_back()
 			capacity_ /= 2;
 		}
 		
-		int * elements = new int [size_];
+		int * elements = new int [capacity_];
 		for (std::size_t i = 0; i < size_; i++){
 			elements[i] = elements_[i];
 		}
 		delete[] elements_;
 		int * elements_ = new int [capacity_];
-		for (std::size_t i = 0; i < size_; i++){
-			elements_[i] = elements[i];
-		}
-	 
+		elements_ = elements;
 	}
 }
 
