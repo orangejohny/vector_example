@@ -69,24 +69,24 @@ void vector_t::push_back(int value)
 	if (elements_ == nullptr){
 		size_++;
 		capacity_++;
-		elements_ = new int [capacity];
-		elements_[size-1] = value;
+		elements_ = new int [capacity_];
+		elements_[size_-1] = value;
 	}else
 	{
 		size_++;
 		if (size_ > capacity_){
 			capacity_ *= 2;
-			int * elements = new int elements[size_];
+			int * elements = new int [size_];
 			for (std::size_t i = 0; i < size_ - 1; i++){
 				elements[i] = elements_[i];
 			}
-			elements[size-1] = value;
+			elements[size_-1] = value;
 			delete[] elements_;
-			int * elements_ = new int elements_[capacity_];
+			int * elements_ = new int [capacity_];
 			for (std::size_t i = 0; i < size_; i++){
-				elements_[i] = elements_i];
+				elements_[i] = elements[i];
 			}
-		}else elements_[size-1] = value;
+		}else elements_[size_-1] = value;
 	}
 }
 
@@ -101,14 +101,14 @@ void vector_t::pop_back()
 			capacity_ /= 2;
 		}
 		
-		int * elements = new int elements[size_];
+		int * elements = new int [size_];
 		for (std::size_t i = 0; i < size_; i++){
 			elements[i] = elements_[i];
 		}
 		delete[] elements_;
-		int * elements_ = new int elements_[capacity_];
+		int * elements_ = new int [capacity_];
 		for (std::size_t i = 0; i < size_; i++){
-			elements_[i] = elements_i];
+			elements_[i] = elements[i];
 		}
 	 
 	}
@@ -126,16 +126,7 @@ int vector_t::operator [](std::size_t index) const
 
 bool operator !=(vector_t const & lhs, vector_t const & rhs)
 {
-	if (lhs.size_ == rhs.size_){
-		return false;		
-	}
-	else 
-	{
-		for (std::size_t i = 0; i < rhs.capacity_; i++){
-			if (lhs.elements_[i] == rhs.elements_[i]){
-			return false;
-			}
-		}
-		return true;
-	}
+	if (lhs==rhs){
+	return false;
+	}else return true;
 }
