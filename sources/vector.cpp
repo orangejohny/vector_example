@@ -116,5 +116,5 @@ bool operator !=(vector_t const & lhs, vector_t const & rhs)
 		}
 	}
 */
-	return false;
+	return false; 
 }
