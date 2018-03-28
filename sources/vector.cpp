@@ -22,9 +22,12 @@ vector_t::vector_t(vector_t const & other)
 
 vector_t & vector_t::operator =(vector_t const & other)
 {
-	for (int i = 0; i < size_; i++) {
+	int len = capacity_ < other.size_ ? capacity_ : other.size_;
+	for (int i = 0; i < len; i++) {
 		elements_[i] = other.elements_[i];
 	}
+	size_ = len;
+
 	return *this;
 }
 
@@ -61,12 +64,30 @@ std::size_t vector_t::capacity() const
 void vector_t::push_back(int value)
 {
 	if (size_ == capacity_) {
-		
+		capacity_ *= 2;
+		int* new_elements = new int[capacity_];
+		for (int i = 0; i < size_; i++) {
+			new_elements[i] = elements_[i];
+		}
+		delete[] elements_;
+		elements_ = new_elements;
 	}
+
+	elements_[size_++] = value;
 }
 
-void vector_t::pop_back()
+int vector_t::pop_back()
 {
+	int value = elements_[size_--];
+	if (capacity_ / 4 > size_) {
+		capacity_ /= 2;
+		int* new_elements = new int[capacity_];
+		for (int i = 0; i < size_; i++) {
+			new_elements[i] = elements_[i];
+		}
+		delete[] elements_;
+		elements_ = new_elements;
+	}
 }
 
 int & vector_t::operator [](std::size_t index)
