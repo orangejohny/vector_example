@@ -1,14 +1,23 @@
 #include <algorithm>
 #include <cassert>
 
-#include "vector.hpp"
+#include "../include/vector.hpp"
 
 vector_t::vector_t()
 {
+	elements_ = nullptr;
+	size_ = 0;
+	capacity_ = 0;
 }
 
 vector_t::vector_t(vector_t const & other)
 {
+	size_ = other.size_;
+	capacity_ = other.capacity_ * 2;
+	elements_ = new int[capacity_];
+	for (int i = 0; i < size_; i++) {
+		elements_[i] = other.elements_[i];
+	}
 }
 
 vector_t & vector_t::operator =(vector_t const & other)
