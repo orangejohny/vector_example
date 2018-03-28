@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <cassert>
 
-#include "vector.hpp" 
+#include "../include/vector.hpp"
 
 vector_t::vector_t()
 {
@@ -78,6 +78,10 @@ void vector_t::push_back(int value)
 
 int vector_t::pop_back()
 {
+	if (size_ == 0) {
+		return 0;
+	}
+
 	int value = elements_[size_--];
 	if (capacity_ / 4 > size_) {
 		capacity_ /= 2;
@@ -88,20 +92,18 @@ int vector_t::pop_back()
 		delete[] elements_;
 		elements_ = new_elements;
 	}
+
+	return value;
 }
 
 int & vector_t::operator [](std::size_t index)
 {
-	if (index >= 0 && index < size_) {
-		return elements_[index];
-	}
+	return elements_[index];
 }
 
 int vector_t::operator [](std::size_t index) const
 {
-	if (index >= 0 && index < size_) {
-		return elements_[index];
-	}
+	return elements_[index];
 }
 
 bool operator !=(vector_t const & lhs, vector_t const & rhs)
