@@ -22,12 +22,25 @@ vector_t::vector_t(vector_t const & other)
 
 vector_t & vector_t::operator =(vector_t const & other)
 {
+	for (int i = 0; i < size_; i++) {
+		elements_[i] = other.elements_[i];
+	}
 	return *this;
 }
 
 bool vector_t::operator ==(vector_t const & other) const
 {
-	return false;
+	if (size_ != other.size_) {
+		return false;
+	}
+
+	for (int i = 0; i < size_; i++) {
+		if (elements_[i] != other.elements_[i]) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 vector_t::~vector_t()
