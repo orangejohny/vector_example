@@ -74,7 +74,7 @@ void vector_t::push_back(int value) {
 
 void vector_t::pop_back() {
     if (size_ == 0) {
-        return 0;
+        return;
     }
 
     int value = elements_[size_--];
@@ -89,8 +89,6 @@ void vector_t::pop_back() {
         delete[] elements_;
         elements_ = new_elements;
     }
-
-    return value;
 }
 
 int & vector_t::operator [](std::size_t index) {
