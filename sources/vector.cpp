@@ -83,7 +83,7 @@ int vector_t::pop_back()
 	}
 
 	int value = elements_[size_--];
-	if (capacity_ / 4 > size_) {
+	if (capacity_ / 4 >= size_ && capacity_ != 0) {
 		capacity_ /= 2;
 		int* new_elements = new int[capacity_];
 		for (int i = 0; i < size_; i++) {
