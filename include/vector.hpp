@@ -16,7 +16,7 @@ public:
 	std::size_t capacity() const;
 
 	void push_back(int value);
-	int pop_back();
+	void pop_back();
 
 	int & operator [](std::size_t index);
 	int operator [](std::size_t index) const;
