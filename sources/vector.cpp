@@ -72,7 +72,7 @@ void vector_t::push_back(int value) {
     elements_[size_++] = value;
 }
 
-int vector_t::pop_back() {
+void vector_t::pop_back() {
     if (size_ == 0) {
         return 0;
     }
